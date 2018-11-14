@@ -1,7 +1,23 @@
-<%= create_report_table_header("Reviewer" => "16%",
-                               "# teammate reviews done" => "14%",
-                               "Teammate reviewed" => "20%",
-                               "Last reviewed at" => "20%") %>
+<script>
+   $(function () {
+     /*Function for sorting the table */
+     $("#teammateReviewTable").tablesorter({
+
+        dateFormat : "mmddyyyy", // set the default date format
+       sortList: [[0,0]] //sort First Column by default when page loads
+     });
+   });
+ </script>
+
+<div class = 'reviewreport'>
+<table id= "teammateReviewTable" cellspacing='0' cellpadding='2' border=0 class="table table-striped">
+ <tr bgcolor='#CCCCCC'>
+ <th class="sorter-true" >Reviewer</th>
+ <th class="sorter-true" ># teammate reviews done</th>
+ <th class="sorter-true" >Teammate reviewed</th>
+ <th class="sorter-true" >Last reviewed at</th>
+ </tr>
+
     <%@l = -1 %>
 
     <% @reviewers.each do |r| %>
