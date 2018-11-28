@@ -1,7 +1,4 @@
 
-<%if !@avg_of_avg.nan?%>
-<%= render :partial => 'team_charts', :locals => {:prefix => nil} %>
-<%end%>
 <TR id="<%= prefix %>_header" style="background-color: white">
 <TD>       
      <a href="#" id="<%= prefix %>Link" name="<%= prefix %>Link" onclick="toggleTeam('<%= prefix %>');return false;" style="padding-right: 20px"><%=image_tag("expand.png")%></a>
