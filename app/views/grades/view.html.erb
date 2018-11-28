@@ -25,7 +25,7 @@ If there is no metareviewing deadline, the “Reviewing” column should not app
     </table>
   <%end%>
 <%end%> 
-
+<div>
 <table id= "summaryTable" class="table table-striped grades" width="100%">
   <!--ACS Render the appropriate partial for displaying the scores depending on the team size -->
 <% if @assignment.team_assignment? && @scores[:teams].length > 0 %>
@@ -34,6 +34,7 @@ If there is no metareviewing deadline, the “Reviewing” column should not app
   <tr><td>No teams are defined for this assignment</td></tr>
 <% end %>
 </table>
+</div>
 <BR/><BR/>
 <%= link_to 'Export '+'Grades',
             :controller=>'export_file',
