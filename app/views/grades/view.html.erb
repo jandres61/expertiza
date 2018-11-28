@@ -19,8 +19,10 @@
 If there is no metareviewing deadline, the “Reviewing” column should not appear in the score report.-->
 <% if @assignment.team_assignment? && @scores[:teams].length > 0 %>
 <%if !@avg_of_avg.nan?%>
+<table class="table table-striped grades" width="100%">
 <%= render :partial => 'team_charts', :locals => {:prefix => nil} %>
 <%end%>
+</table>
 <%end%>
 
 <table id= "summaryTable" class="table table-striped grades" width="100%">
