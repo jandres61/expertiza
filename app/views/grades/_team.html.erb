@@ -1,19 +1,20 @@
-<TR id="<%= prefix %>_header" style="background-color: white"><td>   
-     <a href="#" id="<%= prefix %>Link" name="<%= prefix %>Link" onclick="toggleTeam('<%= prefix %>');return false;" style="padding-right: 20px"><%=image_tag("expand.png")%></a></td>
-     <td>
+<TR id="<%= prefix %>_header" style="background-color: white">   
+     <a href="#" id="<%= prefix %>Link" name="<%= prefix %>Link" onclick="toggleTeam('<%= prefix %>');return false;" style="padding-right: 20px"><%=image_tag("expand.png")%></a>
   
   <% topic_id = tscore[:team].topic%>
   <% if topic_id%>
-    <%= tscore[:team].name + ' ('+SignUpTopic.find(topic_id).topic_identifier+')' %>
+    <td><%= tscore[:team].name + ' ('+SignUpTopic.find(topic_id).topic_identifier+')' %></td>
   <% else %>
     <% if @assignment.max_team_size == 1 %>
-      <%= tscore[:team].users.first.name(session[:ip]) + ' (' + tscore[:team].users.first.fullname(session[:ip]) + ')' rescue '' %>
+      <td><%= tscore[:team].users.first.name(session[:ip]) + ' (' + tscore[:team].users.first.fullname(session[:ip]) + ')' rescue '' %></td>
     <% else %>
+    <td>
       <%= tscore[:team].name %> |
       <% for index in 0 .. tscore[:team].users.length - 2 %> 
         <%= tscore[:team].users[index].name(session[:ip]) %>, 
       <% end %>
       <%= tscore[:team].users[tscore[:team].users.length - 1].name(session[:ip]) %>
+      </td>
     <% end %>
   <% end %>
      <% if tscore[:scores][:avg] %>
