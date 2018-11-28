@@ -1,3 +1,12 @@
+<script>
+   $(function () {
+     /*Function for sorting the table */
+     $("#summaryTable").tablesorter({
+       sortList: [[0,0]] //sort First Column by default when page loads
+     });
+   });
+ </script>
+
 <h1>Summary report for <%= @assignment.name %></h1>
 <BR/>
 <% if @scores[:teams] %>
@@ -6,7 +15,7 @@
 <% end %>
 <!-- If there are 1-member teams, the Teammate Review column should not appear in the score report.
 If there is no metareviewing deadline, the “Reviewing” column should not appear in the score report.-->
-<table class="table table-striped grades" width="100%">
+<table id= "summaryTable" class="table table-striped grades" width="100%">
   <!--ACS Render the appropriate partial for displaying the scores depending on the team size -->
 <% if @assignment.team_assignment? && @scores[:teams].length > 0 %>
   <%= render :partial => 'teams' %>
