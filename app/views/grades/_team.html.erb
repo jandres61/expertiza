@@ -29,26 +29,30 @@
 <%= render :partial => 'tabbing', :locals => {:prefix => prefix, :tscore => tscore } %>
 
 -->
-<a id="teamsMembers" onclick="showHideTeamMembersInTeamsListPage();">Show all team members</a>
-<%= render :partial => '/tree_display/page_footer' %><br/>
-<% session[:return_to] = request.url %>
-<%= link_to 'Create Team', :action => 'new', :id=> @root_node.node_object_id, :model => @model %>
-<% if @root_node.class == AssignmentNode %>
-  <% modelType = 'AssignmentTeam' %>
-<% else %>
-  <% modelType = 'CourseTeam' %>
-<% end %>
-| <%= link_to 'Import Teams',
-              :controller=>'import_file',
-              :action=>'start',
-              :model => modelType,
-              :title => 'Teams',
-              :expected_fields =>  "Team Name <em>(optional)</em>&nbsp;&nbsp;|&nbsp;&nbsp;TeamMember1&nbsp;&nbsp;|&nbsp;&nbsp;TeamMember2&nbsp;&nbsp;|&nbsp;&nbsp;...&nbsp;&nbsp;|&nbsp;&nbsp;TeamMemberN",
-              :id => @root_node.node_object_id %>
-|<%= link_to 'Export Teams',
-  :controller=>'export_file',
-  :action=>'start',
-  :model=> modelType,
-  :id=>@root_node.node_object_id %>
-|<%= link_to 'Delete All Teams', :action => 'delete_all', :id=> @root_node.node_object_id, :model => @model %>
-|<%= render :partial => '/shared_scripts/back' %>
+<TR id="<%= prefix %>_header" style="background-color: white"><TD>       
+     <a href="#" id="<%= prefix %>Link" name="<%= prefix %>Link" onclick="toggleTeam('<%= prefix %>');return false;" style="padding-right: 20px"><%=image_tag("expand.png")%></a>
+
+  <% topic_id = tscore[:team].topic%>
+  <% if topic_id%>
+    <%= tscore[:team].name + ' ('+SignUpTopic.find(topic_id).topic_identifier+')' %>
+  <% else %>
+    <% if @assignment.max_team_size == 1 %>
+      <%= tscore[:team].users.first.name(session[:ip]) + ' (' + tscore[:team].users.first.fullname(session[:ip]) + ')' rescue '' %>
+    <% else %>
+      <%= tscore[:team].name %> |
+      <% for index in 0 .. tscore[:team].users.length - 2 %> 
+        <%= tscore[:team].users[index].name(session[:ip]) %>, 
+      <% end %>
+      <%= tscore[:team].users[tscore[:team].users.length - 1].name(session[:ip]) %>
+    <% end %>
+  <% end %>
+     <% if tscore[:scores][:avg] %>
+      	<TD COLSPAN="<%= col_avg_th_span_value %>" ALIGN="CENTER"><%= sprintf("%.2f",tscore[:scores][:avg]) %>%</TD>
+       	<TD COLSPAN="<%= col_range_th_span_value %>" ALIGN="CENTER"><%= sprintf("%.0f",tscore[:scores][:min]) %>% - <%= sprintf("%.0f",tscore[:scores][:max]) %>%</TD>
+     <% else %>
+        <TD COLSPAN="<%= col_avg_th_span_value %>" ALIGN="CENTER">---</TD>
+        <TD COLSPAN="<%= col_range_th_span_value %>" ALIGN="CENTER">---</TD>
+     <% end %>
+     <TD WIDTH="9">&nbsp;</TD></TR>  
+     
+<%= render :partial => 'tabbing', :locals => {:prefix => prefix, :tscore => tscore } %>
