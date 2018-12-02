@@ -16,14 +16,12 @@
 <!-- If there are 1-member teams, the Teammate Review column should not appear in the score report.
 If there is no metareviewing deadline, the “Reviewing” column should not appear in the score report.-->
 <table id= "summaryTable" class="table table-striped grades" width="100%">
-  <thead>
   <!--ACS Render the appropriate partial for displaying the scores depending on the team size -->
 <% if @assignment.team_assignment? && @scores[:teams].length > 0 %>
   <%= render :partial => 'teams' %>
 <% else %>
   <tr><td>No teams are defined for this assignment</td></tr>
 <% end %>
-  </thead>
 </table>
 <BR/><BR/>
 <%= link_to 'Export '+'Grades',
