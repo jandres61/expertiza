@@ -1,6 +1,6 @@
 <TR id="<%= prefix %>_header" style="background-color: white"><TD>
      <a href="#" id="<%= prefix %>Link" name="<%= prefix %>Link" onclick="toggleTeam('<%= prefix %>');return false;" style="padding-right: 20px"><%=image_tag("expand.png")%></a>
-
+<TD>
   <% topic_id = tscore[:team].topic%>
   <% if topic_id%>
     <%= tscore[:team].name + ' ('+SignUpTopic.find(topic_id).topic_identifier+')' %>
