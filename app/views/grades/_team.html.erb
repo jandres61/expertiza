@@ -15,6 +15,7 @@
       <%= tscore[:team].users[tscore[:team].users.length - 1].name(session[:ip]) %>
     <% end %>
   <% end %>
+</TD>
      <% if tscore[:scores][:avg] %>
       	<TD COLSPAN="<%= col_avg_th_span_value %>" ALIGN="CENTER"><%= sprintf("%.2f",tscore[:scores][:avg]) %>%</TD>
        	<TD COLSPAN="<%= col_range_th_span_value %>" ALIGN="CENTER"><%= sprintf("%.0f",tscore[:scores][:min]) %>% - <%= sprintf("%.0f",tscore[:scores][:max]) %>%</TD>
