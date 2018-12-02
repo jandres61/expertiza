@@ -2,22 +2,21 @@
 <br>
 <thead>
 <TR style ="background-color: white;" class="team" id="team-chart">
-	<th>
+	<th class="sorter-false">
 
 	<div class="circle" id="average-score">          
   			
   	</div>
   	Class Average
 	</th>
-	<TH COLSPAN="8">
+	<TH COLSPAN="8" class="sorter-false">
 		<img src="<%= @average_chart  %>"/><br>
 		Class Distribution
-		</br>
+		<br>
 	</th>
-	<TH WIDTH="9">&nbsp;</th>
+	<TH WIDTH="9" class="sorter-false">&nbsp;</th>
 </TR>
 </thead>
-<br/>
 <script type="text/javascript">
   var myCircle = Circles.create({
     id:           'average-score',
