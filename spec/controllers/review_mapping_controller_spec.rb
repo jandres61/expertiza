@@ -580,7 +580,7 @@ describe ReviewMappingController do
 
     context 'when type is TeammateReviewResponseMap' do
       it 'renders response_report page with corresponding data' do
-        allow(TeammateReviewResponseMap).to receive(:teammate_response_report).with('1').and_return([participant, participant2])
+        allow(TeammateReviewResponseMap).to receive(:teammate_response_report).with('1').and_return([participant2, participant])
         params = {
           id: 1,
           report: {type: 'TeammateReviewResponseMap'}
