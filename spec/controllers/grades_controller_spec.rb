@@ -71,6 +71,12 @@ describe GradesController do
     end
 
     context 'when view_my_scores page is allow to access' do
+      it 'sorts according to team' do
+      expect(response).to be_sorted(:team)
+      end
+    end
+
+    context 'when view_my_scores page is allow to access' do
       it 'renders grades#view_my_scores page' do
         allow(TeamsUser).to receive(:where).with(any_args).and_return([double('TeamsUser', team_id: 1)])
         allow(Team).to receive(:find).with(1).and_return(team)
