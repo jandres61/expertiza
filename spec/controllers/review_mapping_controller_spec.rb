@@ -585,17 +585,19 @@ describe ReviewMappingController do
           id: 1,
           report: {type: 'TeammateReviewResponseMap'}
         }
-
-        # get the index of the first occurrence of each users' email address in the response body
-        actual_order = User.order(:reviewer).map { |user| page.body.index(reviewer.name) }
-        # should already be in sorted order
-        expect(actual_order).to eq(actual_order.sort)
-
-
         get :response_report, params
         expect(response).to render_template(:response_report)
       end
     end
+
+    context 'when type is TeammateReviewResponseMap1' do
+      it 'should have the reviewer in right order' do
+        allow(TeammateReviewResponseMap).to sort(:reviewer)
+        get :response_report
+        expect(response).to sort(:response_report)
+      end
+    end
+
 
     context 'when type is Calibration and participant variable is nil' do
       it 'renders response_report page with corresponding data' do
