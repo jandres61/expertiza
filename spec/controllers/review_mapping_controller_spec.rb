@@ -592,9 +592,9 @@ describe ReviewMappingController do
 
     context 'when type is TeammateReviewResponseMap1' do
       it 'should have the reviewer in right order' do
-        allow(TeammateReviewResponseMap).to sort(:reviewer)
+        allow(TeammateReviewResponseMap).to (:reviewer).sort
         get :response_report
-        expect(response).to sort(:response_report)
+        expect(response).to (:response_report).sort
       end
     end
 
